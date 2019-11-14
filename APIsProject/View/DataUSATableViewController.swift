@@ -1,26 +1,24 @@
 //
-//  RepresentativeTableViewController.swift
+//  DataUSATableViewController.swift
 //  APIsProject
 //
-//  Created by Ella  Neumarker on 11/12/19.
+//  Created by Ella  Neumarker on 11/14/19.
 //  Copyright © 2019 Ella Neumarker. All rights reserved.
 //
 
 import UIKit
 
-class RepresentativeTableViewController: UITableViewController {
+class DataUSATableViewController: UITableViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var items = [RepresentativeItem]()
-    var representativeController = RepresentativeController()
+    var items = [DataUSAItem]()
+    var dataUSAController = DataUSAController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         searchBar.delegate = self
-        
-        
-        
     }
     
     func fetchMatchingItems() {
@@ -33,11 +31,10 @@ class RepresentativeTableViewController: UITableViewController {
         if !searchTerm.isEmpty {
             
             let query: [String: String] = [
-                "zip": searchTerm,
-                "output": "json"
+                "source_name": searchTerm
             ]
             
-            representativeController.fetchItems(matching: query) { (fetchItems) in
+            dataUSAController.fetchItems(matching: query) { (fetchItems) in
                 if let fetchItems = fetchItems {
                     DispatchQueue.main.async {
                         self.items = fetchItems
@@ -48,36 +45,26 @@ class RepresentativeTableViewController: UITableViewController {
         }
     }
     
-//    func configure(cell: UITableViewCell, forItemAt indexPath: IndexPath) {
-//        let item = items[indexPath.row]
-//
-//        cell.textLabel?.text = item.name
-//        cell.detailTextLabel?.text = item.state
-//
-//    }
-    
-   
+    func configure(cell: UITableViewCell, forItemAt indexPath: IndexPath) {
+        let item = items[indexPath.row]
+        
+        cell.textLabel?.text = item.idNation
+        cell.detailTextLabel?.text = item.population
+        
+    }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return  items.count
+        return items.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RepCell", for: indexPath) as! RepTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "USACell", for: indexPath)
 
-//        configure(cell: cell, forItemAt: indexPath)
-        
-        let item = items[indexPath.row]
-        
-        cell.nameLabel.text = item.name
-        cell.partyLabel.text = item.party
-        cell.stateLabel.text = item.state
-        cell.phoneLabel.text = item.phone
-        cell.linkLabel.text = item.link
+        configure(cell: cell, forItemAt: indexPath)
 
         return cell
     }
@@ -85,12 +72,11 @@ class RepresentativeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
 }
 
-extension RepresentativeTableViewController: UISearchBarDelegate {
-    
+extension DataUSATableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
         fetchMatchingItems()
         searchBar.resignFirstResponder()
     }

@@ -13,7 +13,6 @@ class RepTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var partyLabel: UILabel!
     @IBOutlet weak var stateLabel: UILabel!
-    @IBOutlet weak var districtLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var linkLabel: UILabel!
    

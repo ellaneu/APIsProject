@@ -11,7 +11,8 @@ import UIKit
 class DogViewController: UIViewController {
 
     @IBOutlet weak var dogImageView: UIImageView!
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var newImageButton: UIButton!
+    
     
     
     var dogItemController = DogItemController()
