@@ -31,7 +31,9 @@ class DataUSATableViewController: UITableViewController {
         if !searchTerm.isEmpty {
             
             let query: [String: String] = [
-                "source_name": searchTerm
+                "drilldowns": "State",
+                "measures": "Population",
+                "year": searchTerm
             ]
             
             dataUSAController.fetchItems(matching: query) { (fetchItems) in
@@ -44,14 +46,6 @@ class DataUSATableViewController: UITableViewController {
             }
         }
     }
-    
-    func configure(cell: UITableViewCell, forItemAt indexPath: IndexPath) {
-        let item = items[indexPath.row]
-        
-        cell.textLabel?.text = item.idNation
-        cell.detailTextLabel?.text = item.population
-        
-    }
 
     // MARK: - Table view data source
 
@@ -62,9 +56,13 @@ class DataUSATableViewController: UITableViewController {
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "USACell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "USACell", for: indexPath) as! DataUSATableViewCell
 
-        configure(cell: cell, forItemAt: indexPath)
+        let item = items[indexPath.row]
+        
+        cell.stateLabel.text = item.state
+        cell.stateIDLabel.text = item.idState
+        cell.populationLabel.text = item.population
 
         return cell
     }
@@ -76,7 +74,6 @@ class DataUSATableViewController: UITableViewController {
 
 extension DataUSATableViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
         fetchMatchingItems()
         searchBar.resignFirstResponder()
     }

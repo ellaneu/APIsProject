@@ -9,16 +9,16 @@
 import Foundation
 
 struct DataUSAItem: Codable {
-    var idNation: String
-    var nation: String
+    var idState: String
+    var state: String
     var idYear: String
     var year: String
     var population: String
     var slugNation: String
     
     enum CodingKeys: String, CodingKey {
-        case idNation = "ID Nation"
-        case nation = "Nation"
+        case idState = "ID State"
+        case state = "State"
         case idYear = "ID Year"
         case year = "Year"
         case population = "Population"
@@ -28,8 +28,8 @@ struct DataUSAItem: Codable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.idNation = try values.decode(String.self, forKey: CodingKeys.idNation)
-        self.nation = try values.decode(String.self, forKey: CodingKeys.nation)
+        self.idState = try values.decode(String.self, forKey: CodingKeys.idState)
+        self.state = try values.decode(String.self, forKey: CodingKeys.state)
         self.idYear = try values.decode(String.self, forKey: CodingKeys.idYear)
         self.year = try values.decode(String.self, forKey: CodingKeys.year)
         self.population = try values.decode(String.self, forKey: CodingKeys.population)

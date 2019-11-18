@@ -17,10 +17,8 @@ class RepresentativeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         searchBar.delegate = self
-        
-        
-        
     }
     
     func fetchMatchingItems() {
