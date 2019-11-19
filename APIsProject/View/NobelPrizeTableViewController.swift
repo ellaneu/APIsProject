@@ -1,19 +1,23 @@
 //
-//  RepresentativeTableViewController.swift
+//  NobelPrizeTableViewController.swift
 //  APIsProject
 //
-//  Created by Ella  Neumarker on 11/12/19.
+//  Created by Ella  Neumarker on 11/19/19.
 //  Copyright © 2019 Ella Neumarker. All rights reserved.
 //
 
 import UIKit
 
-class RepresentativeTableViewController: UITableViewController {
+class NobelPrizeTableViewController: UITableViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var items = [RepresentativeItem]()
-    var representativeController = RepresentativeController()
+    var items = [NobelPrizeItem]()
+    var items2 = [Laureates]()
+    var nobelPrizeController = NobelPrizeController()
+    
+    let queryOptions = ["prize", "laureate"]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +35,10 @@ class RepresentativeTableViewController: UITableViewController {
         if !searchTerm.isEmpty {
             
             let query: [String: String] = [
-                "zip": searchTerm,
-                "output": "json"
+                "year": searchTerm
             ]
             
-            representativeController.fetchItems(matching: query) { (fetchItems) in
+            nobelPrizeController.fetchItems(matching: query) { (fetchItems) in
                 if let fetchItems = fetchItems {
                     DispatchQueue.main.async {
                         self.items = fetchItems
@@ -45,37 +48,24 @@ class RepresentativeTableViewController: UITableViewController {
             }
         }
     }
-    
-//    func configure(cell: UITableViewCell, forItemAt indexPath: IndexPath) {
-//        let item = items[indexPath.row]
-//
-//        cell.textLabel?.text = item.name
-//        cell.detailTextLabel?.text = item.state
-//
-//    }
-    
-   
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return  items.count
+        return items.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RepCell", for: indexPath) as! RepTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PrizeCell", for: indexPath) as! NobelPrizeTableViewCell
 
-//        configure(cell: cell, forItemAt: indexPath)
-        
         let item = items[indexPath.row]
         
-        cell.nameLabel.text = item.name
-        cell.partyLabel.text = item.party
-        cell.stateLabel.text = item.state
-        cell.phoneLabel.text = item.phone
-        cell.linkLabel.text = item.link
+        cell.yearLabel.text = item.year
+        cell.categoryLabel.text = item.category
+        cell.firstNameLabel.text = item.laureates?.first?.firstname
+        cell.surnameLabel.text = item.laureates?.first?.surname
 
         return cell
     }
@@ -84,12 +74,12 @@ class RepresentativeTableViewController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
 }
 
-extension RepresentativeTableViewController: UISearchBarDelegate {
+extension NobelPrizeTableViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
         fetchMatchingItems()
         searchBar.resignFirstResponder()
     }

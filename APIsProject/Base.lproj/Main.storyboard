@@ -24,6 +24,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Na1-dg-M3s">
                                 <rect key="frame" x="169" y="562" width="77" height="30"/>
                                 <state key="normal" title="New Image"/>
+                                <connections>
+                                    <action selector="imageButtonTapped:" destination="oR6-qQ-LzQ" eventType="touchUpInside" id="nsc-Rr-xKc"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -163,24 +166,94 @@
         <!--Nobel Prize-->
         <scene sceneID="0Zk-jf-3tt">
             <objects>
-                <tableViewController id="kwu-m1-DOC" sceneMemberID="viewController">
+                <tableViewController id="kwu-m1-DOC" customClass="NobelPrizeTableViewController" customModule="APIsProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="YlE-uN-wF5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="d8Z-If-j4y">
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="year" id="d8Z-If-j4y">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="gmI-9r-HoR">
-                                <rect key="frame" x="0.0" y="72" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PrizeCell" rowHeight="149" id="gmI-9r-HoR" customClass="NobelPrizeTableViewCell" customModule="APIsProject" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="414" height="149"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gmI-9r-HoR" id="tjB-kj-GTi">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="149"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hBI-J4-9Ti">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="149"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pGs-SY-hgw">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ps-4s-fWh">
+                                                            <rect key="frame" x="0.0" y="0.0" width="204.5" height="49.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WuY-R1-x7l">
+                                                            <rect key="frame" x="209.5" y="0.0" width="204.5" height="49.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="jnU-Cb-uh6">
+                                                    <rect key="frame" x="0.0" y="49.5" width="414" height="50"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4x-dJ-JtN">
+                                                            <rect key="frame" x="0.0" y="0.0" width="202" height="50"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w79-Cd-1RQ">
+                                                            <rect key="frame" x="212" y="0.0" width="202" height="50"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BU3-pc-Ro8">
+                                                    <rect key="frame" x="0.0" y="99.5" width="414" height="49.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Year:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grS-1Z-8Is">
+                                                            <rect key="frame" x="0.0" y="0.0" width="202" height="49.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOg-zQ-DKw">
+                                                            <rect key="frame" x="212" y="0.0" width="202" height="49.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="hBI-J4-9Ti" secondAttribute="bottom" id="EbF-uy-Tdr"/>
+                                        <constraint firstAttribute="trailing" secondItem="hBI-J4-9Ti" secondAttribute="trailing" id="G2G-02-gBL"/>
+                                        <constraint firstItem="hBI-J4-9Ti" firstAttribute="leading" secondItem="tjB-kj-GTi" secondAttribute="leading" id="lXc-2F-yex"/>
+                                        <constraint firstItem="hBI-J4-9Ti" firstAttribute="top" secondItem="tjB-kj-GTi" secondAttribute="top" id="q7F-RK-ylf"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="categoryLabel" destination="w79-Cd-1RQ" id="j8a-Qi-Ez4"/>
+                                    <outlet property="firstNameLabel" destination="1ps-4s-fWh" id="I6r-xO-CLi"/>
+                                    <outlet property="surnameLabel" destination="WuY-R1-x7l" id="48O-LS-xwV"/>
+                                    <outlet property="yearLabel" destination="YOg-zQ-DKw" id="CfI-HK-2Se"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -189,10 +262,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Nobel Prize" id="iBX-QR-T04"/>
+                    <connections>
+                        <outlet property="searchBar" destination="d8Z-If-j4y" id="QkO-N4-J9t"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H82-gs-pm3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="864" y="1489"/>
+            <point key="canvasLocation" x="863.768115942029" y="1488.6160714285713"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="C8Q-Ru-2oY">

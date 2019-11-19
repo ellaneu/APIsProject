@@ -13,9 +13,16 @@ class DogViewController: UIViewController {
     @IBOutlet weak var dogImageView: UIImageView!
     @IBOutlet weak var newImageButton: UIButton!
     
-    
-    
     var dogItemController = DogItemController()
+    
+    
+    @IBAction func imageButtonTapped(_ sender: Any) {
+       dogItemController.fetchItems { (dogInfo) in
+                  if let dogInfo = dogInfo {
+                      self.updateUI(with: dogInfo)
+            }
+        }
+    }
     
     
     override func viewDidLoad() {
