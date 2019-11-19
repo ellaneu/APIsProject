@@ -11,18 +11,15 @@ import Foundation
 struct DataUSAItem: Codable {
     var idState: String
     var state: String
-    var idYear: String
     var year: String
-    var population: String
-    var slugNation: String
+    var population: Int
     
     enum CodingKeys: String, CodingKey {
         case idState = "ID State"
         case state = "State"
-        case idYear = "ID Year"
         case year = "Year"
         case population = "Population"
-        case slugNation = "Slug Nation"
+
     }
     
     init(from decoder: Decoder) throws {
@@ -30,10 +27,8 @@ struct DataUSAItem: Codable {
         
         self.idState = try values.decode(String.self, forKey: CodingKeys.idState)
         self.state = try values.decode(String.self, forKey: CodingKeys.state)
-        self.idYear = try values.decode(String.self, forKey: CodingKeys.idYear)
         self.year = try values.decode(String.self, forKey: CodingKeys.year)
-        self.population = try values.decode(String.self, forKey: CodingKeys.population)
-        self.slugNation = try values.decode(String.self, forKey: CodingKeys.slugNation)
+        self.population = try values.decode(Int.self, forKey: CodingKeys.population)
     }
 }
 

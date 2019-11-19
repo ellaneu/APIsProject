@@ -13,6 +13,7 @@ class DataUSATableViewCell: UITableViewCell {
     @IBOutlet weak var stateLabel: UILabel!
     @IBOutlet weak var stateIDLabel: UILabel!
     @IBOutlet weak var populationLabel: UILabel!
+    @IBOutlet weak var yearLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

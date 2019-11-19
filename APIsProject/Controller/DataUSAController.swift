@@ -13,7 +13,7 @@ class DataUSAController {
     func fetchItems(matching query: [String: String], completion: @escaping ([DataUSAItem]?) -> Void) {
         let baseURL = URL(string: "https://datausa.io/api/data?")
         
-        guard let url = baseURL?.withQueries3(query) else {
+        guard let url = baseURL?.withQueries(query) else {
             completion(nil)
             print("Unable to build URL with supplied queries")
             return

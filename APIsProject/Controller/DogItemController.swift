@@ -18,7 +18,7 @@ class DogItemController {
             "api_key": "DEMO_KEY"
         ]
         
-        let url = baseURL.withQueries2(query)!
+        let url = baseURL.withQueries(query)!
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             let decoder = JSONDecoder()

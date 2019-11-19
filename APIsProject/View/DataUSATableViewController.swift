@@ -62,14 +62,22 @@ class DataUSATableViewController: UITableViewController {
         
         cell.stateLabel.text = item.state
         cell.stateIDLabel.text = item.idState
-        cell.populationLabel.text = item.population
-
+        cell.yearLabel.text = item.year
+        cell.populationLabel.text = String(item.population)
+        cell.showsReorderControl = true
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+//    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+//        let movedState = items.remove(at: fromIndexPath.row)
+//        items.insert(movedState, at: to.row)
+//        tableView.reloadData()
+//    }
 }
 
 extension DataUSATableViewController: UISearchBarDelegate {
